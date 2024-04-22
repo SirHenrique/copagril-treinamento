@@ -1,16 +1,15 @@
 import axios, { AxiosResponse } from 'axios';
 import * as wsb from 'src/beans/WS_Beans';
-import { environment } from 'src/environments/environment';
 
-const URL = environment.url_padrao;
 
-export const exportaG5 = async (port: string, body: string = '{}') =>
+
+export const exportaProdutos = async ( body: string = '{}') =>
   (
     await axios.post<
       AxiosResponse<wsb.G5Response>,
       AxiosResponse<wsb.G5Response>
     >(
-      `${URL}/SXI/G5Rest?server=${URL}&module=sapiens&service=com.prisma.paginacao&port=ExportaServico&useAlwaysArray=true`,
+      `https://erphomolog.copagril.com.br:9596/SXI/G5Rest?server=https://erphomolog.copagril.com.br:9596&module=sapiens&service=com.prisma.bpm&port=ExportaProdutos&useAlwaysArray=true`,
       body,
       wsb.ws_beans_header
     )

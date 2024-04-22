@@ -7,7 +7,6 @@ export const environment = {
       return error;
     }
   },
-  url_padrao: 'https://demonstra.prismainformatica.com.br:8188',
   databaseType: 'ORACLE',
   ged_papel: [
     {

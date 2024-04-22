@@ -2,14 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeNGConfig, MessageService } from 'primeng/api';
 import { VP_BPM } from 'src/beans/VP_BPM';
-import * as fd from 'src/functions/Form_Design';
 // import formValidate from 'src/functions/Form_Validate';
 import { Validate_Service } from '../services/Validate_Service'
 import * as wc from 'src/functions/Workflow_Cockpit';
 import { Data, Info } from 'src/beans/Workflow';
 import axios from 'axios';
-import { ThemeService } from '../services/theme.service';
-import { AnexoService } from './app.service';
 import { Messages } from 'primeng/messages';
 
 declare var workflowCockpit: any;
@@ -26,9 +23,9 @@ export class AppComponent {
 
   checked: boolean = false;
 
-  public menus: MenuItem[] = fd.Menus;
+
   public activeMenu: MenuItem = {};
-  public panel = fd.Panels;
+
   public hideButtons: boolean = false;
 
   public vp: VP_BPM = new VP_BPM();
@@ -36,9 +33,7 @@ export class AppComponent {
   constructor(
     public translate: TranslateService,
     public primeNGConfig: PrimeNGConfig,
-    private themeService: ThemeService,
     private formValidate: Validate_Service,
-    private anexoService: AnexoService
   ) {
     new workflowCockpit({
       init: this._loadData,
@@ -77,11 +72,11 @@ export class AppComponent {
     );
 
     this.vp.Buscando_WS = false;
-    this.activeMenu = fd.showMenus(1, [1, 2, 3, 4]);
+
   }
 
   private _loadData = async (_data: Data, info: Info): Promise<void> => {
-    const r = await wc.loadData(this.vp, info, this.anexoService);
+    const r = await wc.loadData(this.vp, info);
     this.vp = r.vp;
   };
 
@@ -97,12 +92,5 @@ export class AppComponent {
 
   private _rollback = wc.rollback;
 
-  changeTheme(checked: boolean) {
-    if (checked) {
-      this.themeService.switchTheme('lara-dark');
-    } else {
-      this.themeService.switchTheme('lara-light');
-    }
-  }
-  a = () => console.dir(this.vp);
+
 }
