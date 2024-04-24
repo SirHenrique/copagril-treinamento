@@ -27,13 +27,21 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FileUploadModule } from 'primeng/fileupload';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { Validate_Service } from 'src/services/Validate_Service';
+import { NomeComponent } from './nome/nome.component';
+import { AdicionarComentarioComponent } from './adicionar-comentario/adicionar-comentario.component';
+import { SetorSolicitanteComponent } from './setor-solicitante/setor-solicitante.component';
+import { FiliaisComponent } from './filiais/filiais.component';
 
 export const HttpLoaderFactory = (httpClient: HttpClient) =>
   new TranslateHttpLoader(httpClient, 'assets/i18n/');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NomeComponent,
+    AdicionarComentarioComponent,
+    SetorSolicitanteComponent,
+    FiliaisComponent
   ],
   imports: [
     BrowserAnimationsModule,

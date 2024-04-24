@@ -1,0 +1,73 @@
+<div class="grid">
+  <span class="col-12">Filial</span>
+  <div class="p-inputgroup col-12 py-0">
+    <input
+      pInputText
+      placeholder="Selecione"
+      [(ngModel)]="vp.apeFil"
+      type="text"
+      [readOnly]="vp.readOnlyFilial"
+      (click)="filialInput()"
+    />
+    <span (click)="filialInput()" class="p-inputgroup-addon">
+      <i class="pi pi-search"></i>
+    </span>
+  </div>
+</div>
+
+<p-dialog
+header="Filiais"
+[modal]="true"
+[draggable]="false"
+[resizable]="false"
+[closeOnEscape]="true"
+[(visible)]="showModalFil"
+[styleClass]="'w-5'"
+position="top">
+
+  <p-table
+  #tableFilial
+  [value]="vp.filial_arr"
+  selectionMode="single"
+  [paginator]="true"
+  [(selection)]="vp.filial"
+  (onRowSelect)="filialSelect()"
+  [rows]="10"
+  [globalFilterFields]="['codFil','apeFil','nomFil']"
+  >
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+      <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          class="col-12"
+          pInputText
+          (input)="
+            tableFilial.filterGlobal(
+              $any($event.target).value,
+              'contains'
+            )
+          "
+          placeholder="Buscar"
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Código</th>
+      <th>Apelido</th>
+      <th>Nome</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-filial>
+    <tr [pSelectableRow]="filial">
+      <td>{{ filial.codFil}}</td>
+      <td>{{ filial.apeFil }}</td>
+      <td>{{ filial.nomFil }}</td>
+    </tr>
+  </ng-template>
+
+</p-table>
+</p-dialog>

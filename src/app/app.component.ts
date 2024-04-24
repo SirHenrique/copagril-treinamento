@@ -1,3 +1,4 @@
+import { Comentarios } from './../beans/VP_BPM';
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeNGConfig, MessageService } from 'primeng/api';
@@ -92,5 +93,15 @@ export class AppComponent {
 
   private _rollback = wc.rollback;
 
+  public adicionarComentario() {
+    console.log('ENTROU')
+    let comentario: Comentarios = {
+      nome: this.vp.nome,
+      comentario: this.vp.texto
+    }
 
+    this.vp.comentarios.push(comentario)
+
+    console.log(this.vp.comentarios);
+    }
 }

@@ -13,15 +13,23 @@ export class Validate_Service {
 
   public validate(vp: VP_BPM) {
     switch (this.STEP) {
-      // case environment.s1_etapa1:
-      //   if(vp.msgTeste == ''){
-      //     this.ms.add({
-      //       severity: 'warn',
-      //       summary: 'Message working!',
-      //       detail: 'testeMsg',
-      //     });
-      //   }
-      //   break;
+      case environment.s1_etapa1:
+        if(vp.codFil == 0){
+          this.ms.add({
+            severity: 'warn',
+            summary: 'Selecione uma Filial!',
+            detail: 'Favor Selecionar uma Filial para Prosseguir',
+          });
+        }
+        
+        if(vp.comentarios.length == 0){
+          this.ms.add({
+            severity: 'warn',
+            summary: 'Coloque um Comentário!',
+            detail: 'Favor colocar pelo menos um comentário.',
+          });
+        }
+        break;
       default:
         break;
     }

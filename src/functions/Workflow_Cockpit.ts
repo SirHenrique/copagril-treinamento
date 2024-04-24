@@ -4,7 +4,7 @@ import { ws_beans_header } from 'src/beans/WS_Beans';
 import { environment } from 'src/environments/environment';
 import { getFormPresentation } from './Form_Presentation';
 import getVP from './Get_VP_BPM';
-import { exportaProdutos } from './WS_Axios';
+import { exportaFiliais, exportaProdutos } from './WS_Axios';
 
 const STEP = environment.tarefa();
 
@@ -19,19 +19,23 @@ async function loadData(vp: VP_BPM, info: Info): Promise<ResponseLoadData> {
   const ptd = await info.getPlatformData();
   rld.vp.token = `bearer ${ptd.token.access_token}`;
   ws_beans_header.headers!['Authorization'] = rld.vp.token;
+  rld.vp.nome = rld.vp.user_fullName
 
-  const body = {
+  let body = {
     codEmp: 1
   }
 
-  const r = await exportaProdutos(JSON.stringify(body));
+  const r = await exportaFiliais(JSON.stringify(body));
   console.log(r)
+  rld.vp.filial_arr = r.filiais
+
   const ipv = await info.getInfoFromProcessVariables();
-  // if (STEP !== environment.s1_etapa1) {
-  //   var map: Map<any, any> = new Map();
-  //   for (let i of ipv) map.set(i.key, i.value);
-  //   rld.vp = getVP(rld.vp, map);
-  // }
+  if (STEP !== environment.s1_etapa1) {
+    var map: Map<any, any> = new Map();
+    for (let i of ipv) map.set(i.key, i.value);
+    rld.vp = getVP(rld.vp, map);
+  }
+
   rld = getFormPresentation(rld);
 
 
@@ -39,6 +43,10 @@ async function loadData(vp: VP_BPM, info: Info): Promise<ResponseLoadData> {
 }
 
 function saveData(vp: VP_BPM): any {
+  if(STEP == environment.s1_etapa1) {
+    vp.setorSolicitante_txt = JSON.stringify(vp.setorSolicitante)
+    vp.comentarios_txt = JSON.stringify(vp.comentarios)
+  }
   return { formData: vp };
 }
 

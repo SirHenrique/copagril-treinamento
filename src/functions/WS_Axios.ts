@@ -15,4 +15,15 @@ export const exportaProdutos = async ( body: string = '{}') =>
     )
   ).data;
 
+  export const exportaFiliais = async ( body: string = '{}') =>
+    (
+      await axios.post<
+        any,any
+      >(
+        `https://erphomolog.copagril.com.br:9596/SXI/G5Rest?server=https://erphomolog.copagril.com.br:9596&module=sapiens&service=com.prisma.bpm&port=ExportaFiliais&useAlwaysArray=true`,
+        body,
+        wsb.ws_beans_header
+      )
+    ).data;
+
 
