@@ -9,6 +9,13 @@ export default function getVP(vp: VP_BPM, map: Map<any, any>): VP_BPM {
   vp.nomFil = map.get('nomFil')
   vp.nome = map.get('nome')
 
+  vp.opcaoTI_txt = map.get('opcaoTI_txt')
+  if(vp.opcaoTI_txt)
+    vp.opcaoTI = JSON.parse(vp.opcaoTI_txt);
+
+  vp.aprovadoTI = map.get('aprovadoTI');
+  vp.justificativaTI = map.get('justificativaTI');
+
 
   vp.comentarios_txt = map.get('comentarios_txt')
   if(vp.comentarios_txt)

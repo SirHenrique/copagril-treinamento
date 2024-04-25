@@ -47,6 +47,11 @@ function saveData(vp: VP_BPM): any {
     vp.setorSolicitante_txt = JSON.stringify(vp.setorSolicitante)
     vp.comentarios_txt = JSON.stringify(vp.comentarios)
   }
+  if(STEP == environment.s2_etapa2) {
+    vp.opcaoTI_txt = JSON.stringify(vp.opcaoTI);
+    vp.aprovadoTI = vp.opcaoTI!.code;
+  }
+
   return { formData: vp };
 }
 

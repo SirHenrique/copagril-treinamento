@@ -18,4 +18,5 @@ export const environment = {
   ],
   s1_etapa1: 'solicitacao',
   s2_etapa2: 'validacao',
+  s3_etapa3: 'retorno'
 };

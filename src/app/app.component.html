@@ -4,8 +4,14 @@
   <app-nome  [vp]="vp" class="col-6"></app-nome>
   <app-filiais [vp]="vp" class="col-6"></app-filiais>
   <app-setor-solicitante [vp]="vp" class="col-4"></app-setor-solicitante>
+  <div class="col-8"></div>
+
+
+    <app-aprovacao-ti [vp]="vp" *ngIf="!vp.hideTI" class="col-4"></app-aprovacao-ti>
+    <app-justificativa-ti [vp]="vp" class="col-12" *ngIf="!vp.hideJustificativa"></app-justificativa-ti>
   <app-adicionar-comentario *ngIf="vp.hideComentario" [vp]="vp" class="col-12"></app-adicionar-comentario>
   <p-button *ngIf="vp.hideComentario" (click)="adicionarComentario()"  label="Adicionar" size="large"></p-button>
+  <app-comentarios class="col-12" [vp]="vp"></app-comentarios>
 </div>
 <div class="progress-spinner-parent" *ngIf="vp.Buscando_WS">
   <p-progressSpinner class="progress-spinner"></p-progressSpinner>

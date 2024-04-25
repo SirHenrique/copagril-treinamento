@@ -1,0 +1,8 @@
+<h3>Comentários</h3>
+<div class="grid" *ngFor="let comentario of vp.comentarios">
+  <p-card class="col-12" [header]="comentario.nome">
+    <p class="m-0">
+        {{comentario.comentario}}
+    </p>
+</p-card>
+</div>

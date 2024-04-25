@@ -1,12 +1,12 @@
-
 <div class="grid">
-  <span class="col-12">Setor Solicitante</span>
+  <span class="col-12">Aprovacao T.I</span>
   <div class="col-12 py-0">
     <p-dropdown
     [options]="opcoes"
-    [(ngModel)]="vp.setorSolicitante"
+    [(ngModel)]="vp.opcaoTI"
     optionLabel="name"
-    [readonly]="vp.readonlySolicitante"
+    [readonly]="vp.readonlyAprovacao"
+    (onChange)="aparecerJustificativa()"
     [style]="{ width: '100%' }"
     ></p-dropdown>
   </div>

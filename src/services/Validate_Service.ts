@@ -21,7 +21,7 @@ export class Validate_Service {
             detail: 'Favor Selecionar uma Filial para Prosseguir',
           });
         }
-        
+
         if(vp.comentarios.length == 0){
           this.ms.add({
             severity: 'warn',
@@ -30,6 +30,15 @@ export class Validate_Service {
           });
         }
         break;
+        case environment.s2_etapa2:
+          if(vp.opcaoTI!.code == 'N' && vp.justificativaTI == '') {
+            this.ms.add({
+              severity: 'warn',
+              summary: 'Informe uma Justificativa!',
+              detail: 'Favor informar uma Justificativa.',
+            });
+          }
+          break;
       default:
         break;
     }

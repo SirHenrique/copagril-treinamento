@@ -46,9 +46,18 @@ export class VP_BPM {
   public nomFil: string = '';
   public filial!: Filiais;
   public show_servicos: wsb.Servicos[] = [];
+  public justificativaTI: string = '';
+
+  public aprovadoTI: string = '';
+  public opcaoTI: Opcoes | undefined;
+  public opcaoTI_txt: string = '';
 
   public readOnlyFilial: boolean = false;
   public hideComentario: boolean = true;
+  public readonlyAprovacao: boolean = true;
+  public readonlySolicitante: boolean = true;
+  public hideTI: boolean = true;
+  public hideJustificativa: boolean = true;
 
 
 }

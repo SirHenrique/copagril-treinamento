@@ -31,6 +31,10 @@ import { NomeComponent } from './nome/nome.component';
 import { AdicionarComentarioComponent } from './adicionar-comentario/adicionar-comentario.component';
 import { SetorSolicitanteComponent } from './setor-solicitante/setor-solicitante.component';
 import { FiliaisComponent } from './filiais/filiais.component';
+import { ComentariosComponent } from './comentarios/comentarios.component';
+import { CardModule } from 'primeng/card';
+import { AprovacaoTiComponent } from './aprovacao-ti/aprovacao-ti.component';
+import { JustificativaTiComponent } from './justificativa-ti/justificativa-ti.component';
 
 export const HttpLoaderFactory = (httpClient: HttpClient) =>
   new TranslateHttpLoader(httpClient, 'assets/i18n/');
@@ -41,7 +45,10 @@ export const HttpLoaderFactory = (httpClient: HttpClient) =>
     NomeComponent,
     AdicionarComentarioComponent,
     SetorSolicitanteComponent,
-    FiliaisComponent
+    FiliaisComponent,
+    ComentariosComponent,
+    AprovacaoTiComponent,
+    JustificativaTiComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -67,6 +74,7 @@ export const HttpLoaderFactory = (httpClient: HttpClient) =>
     ProgressSpinnerModule,
     FileUploadModule,
     RadioButtonModule,
+    CardModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
