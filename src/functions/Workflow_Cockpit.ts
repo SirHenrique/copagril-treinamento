@@ -4,7 +4,7 @@ import { ws_beans_header } from 'src/beans/WS_Beans';
 import { environment } from 'src/environments/environment';
 import { getFormPresentation } from './Form_Presentation';
 import getVP from './Get_VP_BPM';
-import { exportaFiliais, exportaProdutos } from './WS_Axios';
+import { cadastraProjeto, exportaFiliais, exportaProdutos } from './WS_Axios';
 
 const STEP = environment.tarefa();
 
@@ -42,7 +42,7 @@ async function loadData(vp: VP_BPM, info: Info): Promise<ResponseLoadData> {
   return rld;
 }
 
-function saveData(vp: VP_BPM): any {
+async function saveData(vp: VP_BPM) {
   if(STEP == environment.s1_etapa1) {
     vp.setorSolicitante_txt = JSON.stringify(vp.setorSolicitante)
     vp.comentarios_txt = JSON.stringify(vp.comentarios)
@@ -50,6 +50,20 @@ function saveData(vp: VP_BPM): any {
   if(STEP == environment.s2_etapa2) {
     vp.opcaoTI_txt = JSON.stringify(vp.opcaoTI);
     vp.aprovadoTI = vp.opcaoTI!.code;
+
+    if(vp.aprovadoTI == 'S') {
+      const body = {
+        codEmp: 1,
+        ind001:10,
+        ind002: 9,
+        ind003:9,
+        ind004:10,
+        numPrj:2070
+      }
+
+
+      const r = await cadastraProjeto(JSON.stringify(body));
+    }
   }
 
   return { formData: vp };
